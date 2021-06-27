@@ -6,64 +6,22 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { getUserList } from "../../lib/api";
+import useFeed from './useFeed';
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const Feed = ({ users }) => {
-    const [items, setItems] = useState(users);
-    const [updateItems, setUpdateItems] = useState(false);
-    const [like, setLike] = useState(null);
-    const fetchMoreData = async () => {
-        const moreUsers = await getUserList({ size: 3 });
-        setTimeout(() => {
-            setItems(items.concat(...moreUsers));
-        }, 2000);
-    };
-    let clickTimeout = null;
-    useEffect(() => {
-      if (updateItems) {
-        setUpdateItems(false);
-      }
-    }, [updateItems])
-    const handleToggleLike = id => {
-      setUpdateItems(true);
-      const indexItem = items.findIndex(item => item.id === id);
-      const newItems = items;
-      newItems[indexItem] = {
-        ...newItems[indexItem],
-        isLiked: !newItems[indexItem].isLiked,
-        likeCount: !newItems[indexItem].isLiked ? (newItems[indexItem].likeCount + 1) : (newItems[indexItem].likeCount - 1)
-      }
-      setItems(newItems);
-    };
-    const handleClicks = id => {
-      if (clickTimeout !== null) {
-        setLike(id);
-        const indexItem = items.findIndex(item => item.id === id);
-        const newItems = items;
-        if (!newItems[indexItem].isLiked) {
-          newItems[indexItem] = {
-            ...items[indexItem],
-            isLiked: true,
-            likeCount: (items[indexItem].likeCount + 1)
-          }
-          setItems(newItems);
-        }
-        setTimeout(() => {
-          setLike(null);
-        }, 1000);
-        clearTimeout(clickTimeout)
-        clickTimeout = null
-      } else {
-        clickTimeout = setTimeout(() => {
-          clearTimeout(clickTimeout)
-          clickTimeout = null
-        }, 1000)
-      }
-    }
+    const useProps = useFeed({ users });
+    const {
+      items,
+      like,
+      handleClicks,
+      handleToggleLike,
+      fetchMoreData
+    } = useProps;
+
     const HeartComponent = ({ id }) => {
       return (
           <svg className={like === id ? styles.heartActive : styles.heart} viewBox="0 0 32 29.6">
@@ -71,6 +29,7 @@ const Feed = ({ users }) => {
           </svg>
       );
     }
+
     const LoaderComponent = () =>  (
         <div className={styles.ldsSpinner}>
             <div></div>
@@ -87,6 +46,7 @@ const Feed = ({ users }) => {
             <div></div>
         </div>
     );
+
     return (
         <InfiniteScroll
             className={styles.scroll}

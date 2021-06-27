@@ -1,5 +1,5 @@
 .main {
-  padding: 5rem 0;
+  padding: 5rem 16px;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -13,9 +13,21 @@
 .flexLeft {
   width: 60%;
   min-height: 100vh;
+  transition: 1s ease;
 }
 .flexRight {
   width: 40%;
   position: relative;
   align-self: flex-start;
+  margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .flexLeft {
+    width: 100%;
+    max-width: 450px;
+  }
+  .flexRight {
+    display: none;
+  }
 }

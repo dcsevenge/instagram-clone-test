@@ -1,40 +1,56 @@
 .suggest {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 30px;
     left: 0;
+    display: flex;
+    margin: 0 10px;
+    flex-direction: column;
+}
+.flexbox {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
 }
 .profile {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 .profileLink {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-overflow: ellipsis;
-    margin: 0 6px;
-    width: 68px;
-    overflow: hidden;
-}
-.profileLinkImage {
-    display: flex;
-    margin: 0 10px 1px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
     border-radius: 50%;
     border: 1px solid rgb(219, 219, 219);
     overflow: hidden;
-    width: 48px;
-    height: 48px;
-    justify-content: center;
-    align-items: center;
 }
-.profileLinkText {
+.profileName {
+    flex: 1 1 auto;
+    margin: 0 16px;
+}
+.profileUsername {
+    font-weight: 600;
+    font-size: 14px;
+    color: #262626;
+}
+.profileFullname {
+    font-size: 14px;
+    color: #8e8e8e;
+}
+.tagsBox {
+    margin-top: 30px;
     font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    text-align: center;
+    color: #c7c7c7;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+.tagsBox a {
+    margin: 0 4px;
+}
+.changeProfile {
+    color: #0095f6;
+    font-size: 14px;
 }

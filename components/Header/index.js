@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const Header = () => (
   <nav className={styles.header}>
-    <div className={styles.container}>
+    <div className={styles.headerContainer}>
       <div className={styles.flexbox}>
         <div className={styles.logo}>
           <Link href={`/`} replace>
