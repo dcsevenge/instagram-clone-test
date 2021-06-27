@@ -1,9 +1,9 @@
-import styles from './story.module.css'
+import styles from './suggest.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Story = ({ users }) => (
-    <div className={styles.story}>
+const Suggest = ({ users }) => (
+    <div className={styles.suggest}>
       {users.map((user, index) => {
         const { username, avatar: imageUrl } = user;
         return (
@@ -24,4 +24,4 @@ const Story = ({ users }) => (
     </div>
 );
 
-export default Story;
+export default Suggest;

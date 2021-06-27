@@ -1,12 +1,8 @@
-.story {
-    background: rgb(255, 255, 255);
-    border: 1px solid rgb(219, 219, 219);
-    border-radius: 4px;
-    height: 80px;
-    margin-bottom: 30px;
-    display: flex;
-    padding-left: 8px;
-    overflow: hidden;
+.suggest {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
 }
 .profile {
     display: flex;

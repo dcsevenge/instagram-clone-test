@@ -13,3 +13,5 @@ a {
 * {
   box-sizing: border-box;
 }
+
+textarea, select, input, button { outline: none; }

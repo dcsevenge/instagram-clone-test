@@ -12,7 +12,10 @@
 }
 .flexLeft {
   width: 60%;
+  min-height: 100vh;
 }
 .flexRight {
   width: 40%;
+  position: relative;
+  align-self: flex-start;
 }
