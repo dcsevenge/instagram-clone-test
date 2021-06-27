@@ -1,0 +1,55 @@
+@import '../../styles/app.css';
+
+.header {
+    background: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 54px;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    z-index: 1000;
+}
+.container {
+    max-width: 960px;
+    justify-content: space-between;
+    display: flex;
+    margin: 0 auto;
+    height: 100%;
+}
+.logo {
+    margin-top: 7px;
+}
+.flexbox {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.profile {
+    display: flex;
+}
+.profileLink {
+    display: flex;
+    margin: 0 10px 1px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+.searchBox {
+    border: 1px solid rgb(219, 219, 219);
+    padding: 6px;
+    border-radius: 4px;
+    background: rgb(250, 250, 250);
+    width: 200px;
+}
+.searchBox::placeholder {
+    text-align: center;
+    color: #8e8e8e;
+}
+.searchBox:active, .searchBox:focus {
+    border: 1px solid rgb(219, 219, 219);
+}
+.iconLink {
+    margin: 0 10px;
+    font-size: 22px;
+}

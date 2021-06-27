@@ -1,0 +1,43 @@
+.story {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 4px;
+    height: 80px;
+    margin-bottom: 30px;
+    display: flex;
+    padding-left: 8px;
+}
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.profileLink {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-overflow: ellipsis;
+    margin: 0 10px;
+    width: 68px;
+    overflow: hidden;
+}
+.profileLinkImage {
+    display: flex;
+    margin: 0 10px 1px;
+    border-radius: 50%;
+    border: 1px solid rgb(219, 219, 219);
+    overflow: hidden;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+}
+.profileLinkText {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: center;
+}
