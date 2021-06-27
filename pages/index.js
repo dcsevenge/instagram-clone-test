@@ -6,9 +6,10 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Feed from "../components/Feed";
 import Story from "../components/Story";
+import {getUserList} from "../lib/api";
 config.autoAddCss = false;
 
-export default function Home() {
+export default function Home({ users, usersStory }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -20,8 +21,8 @@ export default function Home() {
       <main className={styles.main}>
         <Header />
         <div className={styles.flexLeft}>
-          <Story />
-          <Feed />
+          <Story users={usersStory} />
+          <Feed users={users} />
         </div>
         <div className={styles.flexRight}>
 
@@ -29,4 +30,15 @@ export default function Home() {
       </main>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const users = await getUserList();
+  const usersStory = await getUserList();
+  return {
+    props: {
+      users,
+      usersStory
+    }
+  }
 }

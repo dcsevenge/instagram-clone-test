@@ -18,7 +18,7 @@
     justify-content: center;
     flex-direction: column;
     text-overflow: ellipsis;
-    margin: 0 10px;
+    margin: 0 6px;
     width: 68px;
     overflow: hidden;
 }
