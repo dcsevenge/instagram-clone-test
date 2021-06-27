@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styles from './feed.module.css'
-import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisV, faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark, faComment, faHeart, faPaperPlane, faSmile } from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Image from 'next/image';
 import Link from 'next/link';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getUserList } from "../../lib/api";
-// import Skeleton from 'react-loading-skeleton';
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const Feed = ({ users }) => {
     const [items, setItems] = useState(users);
+    const [updateItems, setUpdateItems] = useState(false);
     const [like, setLike] = useState(null);
     const fetchMoreData = async () => {
         const moreUsers = await getUserList({ size: 3 });
@@ -19,9 +23,35 @@ const Feed = ({ users }) => {
         }, 2000);
     };
     let clickTimeout = null;
+    useEffect(() => {
+      if (updateItems) {
+        setUpdateItems(false);
+      }
+    }, [updateItems])
+    const handleToggleLike = id => {
+      setUpdateItems(true);
+      const indexItem = items.findIndex(item => item.id === id);
+      const newItems = items;
+      newItems[indexItem] = {
+        ...newItems[indexItem],
+        isLiked: !newItems[indexItem].isLiked,
+        likeCount: !newItems[indexItem].isLiked ? (newItems[indexItem].likeCount + 1) : (newItems[indexItem].likeCount - 1)
+      }
+      setItems(newItems);
+    };
     const handleClicks = id => {
       if (clickTimeout !== null) {
         setLike(id);
+        const indexItem = items.findIndex(item => item.id === id);
+        const newItems = items;
+        if (!newItems[indexItem].isLiked) {
+          newItems[indexItem] = {
+            ...items[indexItem],
+            isLiked: true,
+            likeCount: (items[indexItem].likeCount + 1)
+          }
+          setItems(newItems);
+        }
         setTimeout(() => {
           setLike(null);
         }, 1000);
@@ -67,7 +97,7 @@ const Feed = ({ users }) => {
         >
           <div className={styles.feed}>
             {items.map((item, index) => {
-              const { username, avatar: imageUrl, employment, id } = item;
+              const { username, avatar: imageUrl, employment, id, isLiked, likeCount } = item;
               return (
                   <div className={styles.feedBlock} key={index}>
                     <div className={styles.feedHeader}>
@@ -99,11 +129,9 @@ const Feed = ({ users }) => {
                       <div className={styles.feedFooter}>
                         <div className={styles.flexbox}>
                           <div>
-                            <Link href={`/`} replace>
-                              <a className={styles.iconLink}>
-                                <FontAwesomeIcon icon={faHeart} />
-                              </a>
-                            </Link>
+                              <span className={isLiked ? styles.isLikedLink : styles.iconLink}>
+                                <FontAwesomeIcon icon={isLiked ? faHeartSolid : faHeart} onClick={() => handleToggleLike(id)} />
+                              </span>
                           </div>
                           <div>
                             <Link href={`/`} replace>
@@ -127,6 +155,9 @@ const Feed = ({ users }) => {
                             </a>
                           </Link>
                         </div>
+                      </div>
+                      <div className={styles.feedCaption}>
+                        <span className={styles.profileLinkText}>ถูกใจ {numberWithCommas(likeCount)} คน</span>
                       </div>
                       <div className={styles.feedCaption}>
                         <Link href={`/`} replace>
