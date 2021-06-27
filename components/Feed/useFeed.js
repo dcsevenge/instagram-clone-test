@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getUserList} from "../../lib/api";
 
 const useFeed = ({ users }) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './feed.module.css'
 import { faEllipsisV, faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark, faComment, faHeart, faPaperPlane, faSmile } from "@fortawesome/free-regular-svg-icons";
