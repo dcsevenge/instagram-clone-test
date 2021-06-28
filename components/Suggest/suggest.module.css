@@ -1,8 +1,6 @@
 .suggest {
-    position: absolute;
-    right: 0;
-    top: 30px;
-    left: 0;
+    position: fixed;
+    top: 100px;
     display: flex;
     margin: 0 10px;
     flex-direction: column;
