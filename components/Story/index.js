@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Story = ({ users }) => (
     <div className={styles.story}>
       {users.map((user, index) => {
-        const { username, avatar: imageUrl } = user;
+        const { login: { username }, picture: { large: imageUrl } } = user;
         return (
             <div className={styles.profile} key={index}>
               <Link href={`/`} replace>

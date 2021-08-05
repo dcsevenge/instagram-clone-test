@@ -23,7 +23,7 @@ const useFeed = ({ users }) => {
 
   const handleToggleLike = id => {
     setUpdateItems(true);
-    const indexItem = items.findIndex(item => item.id === id);
+    const indexItem = items.findIndex(item => item.dob.age === id);
     const newItems = items;
     newItems[indexItem] = {
       ...newItems[indexItem],
@@ -35,7 +35,7 @@ const useFeed = ({ users }) => {
   const handleClicks = id => {
     if (clickTimeout !== null) {
       setLike(id);
-      const indexItem = items.findIndex(item => item.id === id);
+      const indexItem = items.findIndex(item => item.dob.age === id);
       const newItems = items;
       if (!newItems[indexItem].isLiked) {
         newItems[indexItem] = {

@@ -57,7 +57,7 @@ const Feed = ({ users }) => {
         >
           <div className={styles.feed}>
             {items.map((item, index) => {
-              const { username, avatar: imageUrl, employment, id, isLiked, likeCount } = item;
+              const { login: { username, sha256 }, picture: { large: imageUrl }, dob: { age: id }, isLiked, likeCount } = item;
               return (
                   <div className={styles.feedBlock} key={index}>
                     <div className={styles.feedHeader}>
@@ -125,7 +125,7 @@ const Feed = ({ users }) => {
                             {username}
                           </a>
                         </Link>
-                        <span className={styles.feedCaptionContent}>{employment.title}</span>
+                        <span className={styles.feedCaptionContent}>{sha256}</span>
                       </div>
                     </div>
                     <div className={styles.feedFooterSection}>
